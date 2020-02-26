@@ -3,8 +3,6 @@ def getRandomArray(n):
   a = random.sample(range(1, n+1), n)
   return a
 
-print(getRandomArray(100))
-
 #----------------------------------------------------------------
 
 def getSortedArray(n):
@@ -14,4 +12,3 @@ def getSortedArray(n):
   arr.sort(reverse=True)
   return arr
 
-print(getSortedArray(10))
