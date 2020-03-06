@@ -1,4 +1,3 @@
-
 #Create a Node class
 class Node:
   def __init__(self,value):
@@ -16,8 +15,7 @@ class Node:
       #2. One child
         #Swap child with parent and delete parent
       #3. Two children
-        #Find inorder successor of the node. Copy contents of the inorder successor to the node and delete the inorder successor. 
-        #Note that inorder predecessor can also be used.
+        #
   #For FindMin:
     #All we do is go visit the left child of each subtree recursively.
     #Once the left child is null, we return the value of the node whose left child is null
@@ -61,3 +59,30 @@ def findMaxRec(node):
     return node
   #Call findMax recursively until node with right child is null.
   return findMaxRec(node.right)
+  
+#Finding the next node in the tree
+def findNextRec(root, nextNode, value):
+  if root == None:
+    return
+  if root.value = value:
+    if root.right != None:
+      return findMinRec(root.right)
+  elif value < root.value:
+    nextNode = root
+    return findNextRec(root.left, nextNode, value)
+  else:
+    return findNextRec(root.right, nextNode, value)
+
+#Finding the previous node in the tree
+def findPrevRec(root, prevNode, value):
+  if root == None:
+    return
+  if root.value = value:
+    if root.left != None:
+      return findMaxRec(root.left)
+  elif value < root.value:
+    nextNode = root
+    return findNextRec(root.left, prevNode, value)
+  else:
+    return findNextRec(root.right, prevNode, value)
+
