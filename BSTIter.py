@@ -4,80 +4,45 @@ class Node:
     self.left = None
     self.right = None
     self.value = value
-#Algorithms:
-  #For Insert:
-    #Check if root is null, if it is then tree is empty, making node the root of the tree.
-    #If it isn't null, compare node to root, if greater than root, recursively call function to right of root, if less than, recursively call to the left of root
-  #For FindMin:
-    #All we do is go visit the left child of each subtree recursively.
-    #Once the left child is null, we return the value of the node whose left child is null
-  #For FindMax:
-    #All we do is go visit the right child of each subtree recursively
-    #Once the right child is null, we return the value of the node whose right child is null
 
-def insertRec(root, node):
-  #Check if root is null, if it is then tree is empty, making node the root of the tree.
-  if root is None:
-    root = node
-  #If it isn't null, compare node to root, if greater than root, recursively call function to right of root, if less than, recursively call to the left of root
-  else:
-    #Right child
-    if root.value < node.value:
-      #Checking to see if there is a right child, if not then node is the right child
-      if root.right is None:
-        root.right = node
-      #Recursively call insert on the right child
-      else:
-        insertRec(root.right, node)
-    #Left child
+def insertIter(root, value):
+  node = Node(value)
+  #Starting with the root which is the current node in the tree
+  curr = root
+  #Parent will be following 'curr', basically the node on the level above curr
+  parent = None
+
+  #Jumping from node to node in the tree, either left or right depending if the value of the node is greater than or less than the current value. If greater, then jump to the right child, otherwise jump to the left.
+  while curr != None:
+    #Parent jumps to current node, making 'curr' the new parent node
+    parent = curr
+    if node.value > curr.value:
+      #Jump right
+      curr = curr.right
     else:
-      #Same as above but this time on the left
-      if root.value > node.value:
-        if root.left is None:
-          root.left = node
-        else:
-          insertRec(root.left, node)
-
-def findMinRec(node):
-  #Once the left child of the node is null, we return the node
-  if node.left == None:
-    return node
-  #Call findMin recursively until node with left child is null.
-  return findMinRec(node.left)
-
-def findMaxRec(node):
-  #Once the right child of the node is null, we return the node
-  if node.right == None:
-    return node
-  #Call findMax recursively until node with right child is null.
-  return findMaxRec(node.right)
-
-#Finding the next node in the tree
-def findNextRec(root, nextNode, value):
-  #Base case, if null, return null
-  if root == None:
-    return
-  #If we find the root value in the tree, find the minimum of the right child of root.
-  if root.value = value:
-    #Checks to see if there is a right value for root
-    if root.right != None:
-      return findMinRec(root.right)
-  #If value is less than the root value, the next node becomes root, then recursively call on the left child of root.
-  elif value < root.value:
-    nextNode = root
-    return findNextRec(root.left, nextNode, value)
+      #Jump left
+      curr = curr.left
+  #Checking if the tree is empty, if it is then the node becomes the parent 
+  if parent == None:
+    parent = node
+  #If parent value > node value, then node gets assigned to parent and becomes left child
+  elif parent.value > node.value:
+    parent.left = node
+  #If parent value < node value, then node gets assigned to parent and becomes right child
   else:
-    return findNextRec(root.right, nextNode, value)
+    parent.right = node
+  return parent
 
-#Finding the previous node in the tree, basically opposite of findNextRev
-def findPrevRec(root, prevNode, value):
-  if root == None:
-    return
-  if root.value = value:
-    if root.left != None:
-      return findMaxRec(root.left)
-  elif value < root.value:
-    nextNode = root
-    return findNextRec(root.left, prevNode, value)
-  else:
-    return findNextRec(root.right, prevNode, value)
+#Traversing down the left child of each left subtree until we hit a null
+def findMinIter(root):
+  curr = root
+  while curr.left != None:
+    curr = curr.left
+  return curr
+
+#Traversing down the right child of each right subtree until we hit a null
+def findMaxIter(root):
+  curr = root
+  while curr.right != None:
+    curr = curr.right
+  return curr
