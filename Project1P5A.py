@@ -215,7 +215,7 @@ if __name__ == '__main__':
   randArray = getRandomArray(10000)
   for i in range(len(randArray)):
     AVLRoot = insertIter(AVLRoot, randArray[i])
-    BSTRoot = insertIter(BSTRoot, randArray[i])
+    BSTRoot = insertRec(BSTRoot, randArray[i])
 
   
   
