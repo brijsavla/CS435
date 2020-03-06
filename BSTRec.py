@@ -8,14 +8,6 @@ class Node:
   #For Insert:
     #Check if root is null, if it is then tree is empty, making node the root of the tree.
     #If it isn't null, compare node to root, if greater than root, recursively call function to right of root, if less than, recursively call to the left of root
-  #For Delete:
-    #This function has 3 parts to the algorithm:
-      #1. No children
-        #Just remove the node from the tree
-      #2. One child
-        #Swap child with parent and delete parent
-      #3. Two children
-        #
   #For FindMin:
     #All we do is go visit the left child of each subtree recursively.
     #Once the left child is null, we return the value of the node whose left child is null
@@ -59,21 +51,25 @@ def findMaxRec(node):
     return node
   #Call findMax recursively until node with right child is null.
   return findMaxRec(node.right)
-  
+
 #Finding the next node in the tree
 def findNextRec(root, nextNode, value):
+  #Base case, if null, return null
   if root == None:
     return
+  #If we find the root value in the tree, find the minimum of the right child of root.
   if root.value = value:
+    #Checks to see if there is a right value for root
     if root.right != None:
       return findMinRec(root.right)
+  #If value is less than the root value, the next node becomes root, then recursively call on the left child of root.
   elif value < root.value:
     nextNode = root
     return findNextRec(root.left, nextNode, value)
   else:
     return findNextRec(root.right, nextNode, value)
 
-#Finding the previous node in the tree
+#Finding the previous node in the tree, basically opposite of findNextRev
 def findPrevRec(root, prevNode, value):
   if root == None:
     return
@@ -85,4 +81,3 @@ def findPrevRec(root, prevNode, value):
     return findNextRec(root.left, prevNode, value)
   else:
     return findNextRec(root.right, prevNode, value)
-
