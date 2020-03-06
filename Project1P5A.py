@@ -62,7 +62,7 @@ def findNextRec(root, nextNode, value):
   if root == None:
     return
   #If we find the root value in the tree, find the minimum of the right child of root.
-  if root.value = value:
+  if root.value == value:
     #Checks to see if there is a right value for root
     if root.right != None:
       return findMinRec(root.right)
@@ -77,24 +77,17 @@ def findNextRec(root, nextNode, value):
 def findPrevRec(root, prevNode, value):
   if root == None:
     return
-  if root.value = value:
+  if root.value == value:
     if root.left != None:
       return findMaxRec(root.left)
   elif value < root.value:
-    nextNode = root
+    prevNode = root
     return findNextRec(root.left, prevNode, value)
   else:
     return findNextRec(root.right, prevNode, value)
 #--------------------------- END BST RECURSIVE ---------------------------
 
 #--------------------------- START AVL ---------------------------
-class Node:
-  def __init__(self, value):
-    self.value = value
-    self.parent = None
-    self.left = None
-    self.right = None
-    self.height = 0
 #Gets height of current node
 def getHeight(curr):
   if curr != None:
@@ -215,3 +208,14 @@ def insertIter(root, value):
 def getRandomArray(n):
   a = random.sample(range(1, n+1), n)
   return a
+
+if __name__ == '__main__':
+  BSTRoot = None
+  AVLRoot = None
+  randArray = getRandomArray(10000)
+  for i in range(len(randArray)):
+    AVLRoot = insertIter(AVLRoot, randArray[i])
+    BSTRoot = insertIter(BSTRoot, randArray[i])
+
+  
+  
