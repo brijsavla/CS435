@@ -31,14 +31,14 @@ def insertRec(root, node):
 def findMinRec(node):
   #Once the left child of the node is null, we return the node
   if node.left == None:
-    return node
+    return node.value
   #Call findMin recursively until node with left child is null.
   return findMinRec(node.left)
 
 def findMaxRec(node):
   #Once the right child of the node is null, we return the node
   if node.right == None:
-    return node
+    return node.value
   #Call findMax recursively until node with right child is null.
   return findMaxRec(node.right)
 
