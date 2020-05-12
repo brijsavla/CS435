@@ -93,6 +93,8 @@ def findNextIter(root, value):
     return findMinIter(root.right)
   curr = root.parent
   while curr != None:
+    if curr.value < root.value:
+      return root.left
     if curr.value > root.value:
       return curr
     curr = curr.parent
@@ -104,6 +106,8 @@ def findPrevIter(root, value):
     return findMaxIter(root.left)
   curr = root.parent
   while curr != None:
+    if curr.value < root.value:
+      return root.left
     if curr.value > root.value:
       return curr
     curr = curr.parent
@@ -114,7 +118,6 @@ def insertIter(root, value):
   nodeToInsert = Node(value)
   curr = root
   parent = None
-
   while curr != None:
     parent = curr
     if nodeToInsert.value > curr.value:
