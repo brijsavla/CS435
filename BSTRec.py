@@ -4,16 +4,6 @@ class Node:
     self.left = None
     self.right = None
     self.value = value
-#Algorithms:
-  #For Insert:
-    #Check if root is null, if it is then tree is empty, making node the root of the tree.
-    #If it isn't null, compare node to root, if greater than root, recursively call function to right of root, if less than, recursively call to the left of root
-  #For FindMin:
-    #All we do is go visit the left child of each subtree recursively.
-    #Once the left child is null, we return the value of the node whose left child is null
-  #For FindMax:
-    #All we do is go visit the right child of each subtree recursively
-    #Once the right child is null, we return the value of the node whose right child is null
 
 def insertRec(root, node):
   #Check if root is null, if it is then tree is empty, making node the root of the tree.
@@ -58,7 +48,7 @@ def findNextRec(root, nextNode, value):
   if root == None:
     return
   #If we find the root value in the tree, find the minimum of the right child of root.
-  if root.value = value:
+  if root.value == value:
     #Checks to see if there is a right value for root
     if root.right != None:
       return findMinRec(root.right)
@@ -71,9 +61,9 @@ def findNextRec(root, nextNode, value):
 
 #Finding the previous node in the tree, basically opposite of findNextRev
 def findPrevRec(root, prevNode, value):
-  if root == None:
+  if root is None:
     return
-  if root.value = value:
+  if root.value == value:
     if root.left != None:
       return findMaxRec(root.left)
   elif value < root.value:
