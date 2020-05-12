@@ -40,13 +40,13 @@ class BST:
   #Traversing down the left child of each left subtree until we hit a null
   def findMinIter(self, root):
     curr = self.root
-    while curr.left != None:
+    while curr != None:
       curr = curr.left
-    return curr
+    return curr.value
 
   #Traversing down the right child of each right subtree until we hit a null
   def findMaxIter(self, root):
     curr = self.root
-    while curr.right != None:
+    while curr != None:
       curr = curr.right
-    return curr
+    return curr.value
