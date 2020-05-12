@@ -4,11 +4,15 @@ class Node:
     self.left = None
     self.right = None
     self.value = value
+
 class BST:
-  def insertIter(root, value):
+  def __init__(self, root):
+    self.root = root
+  
+  def insertIter(self, root, value):
     node = Node(value)
     #Starting with the root which is the current node in the tree
-    curr = root
+    curr = self.root
     #Parent will be following 'curr', basically the node on the level above curr
     parent = None
 
@@ -34,15 +38,15 @@ class BST:
     return parent
 
   #Traversing down the left child of each left subtree until we hit a null
-  def findMinIter(root):
-    curr = root
+  def findMinIter(self, root):
+    curr = self.root
     while curr.left != None:
       curr = curr.left
     return curr
 
   #Traversing down the right child of each right subtree until we hit a null
-  def findMaxIter(root):
-    curr = root
+  def findMaxIter(self, root):
+    curr = self.root
     while curr.right != None:
       curr = curr.right
     return curr
